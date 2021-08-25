@@ -1,5 +1,6 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
+const cors = require("cors");
 
 const chromeOptions = {
 	headless: true,
@@ -9,6 +10,7 @@ const chromeOptions = {
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.post("/", async (req, res) => {
 	if (!req.body) return res.status(400).end({ error: "bad request" });
