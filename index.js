@@ -14,10 +14,13 @@ app.post("/", async (req, res) => {
 	if (!req.body) return res.status(400).end({ error: "bad request" });
 	if (!req.body.html) return res.status(400).end({ error: "bad request" });
 
+	console.log("incoming request with body: " + req.body);
 	const browser = await puppeteer.launch(chromeOptions);
 	const page = await browser.newPage();
 	page.setContent(req.body.html);
-	const pdf = await page.pdf();
+	const pdf = await page.pdf({
+		format: "a4",
+	});
 	await browser.close();
 
 	res.setHeader("Content-disposition", 'attachment; filename="curriculo.pdf');
