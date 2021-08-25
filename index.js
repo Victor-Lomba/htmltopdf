@@ -14,7 +14,7 @@ app.post("/", async (req, res) => {
 	if (!req.body) return res.status(400).end({ error: "bad request" });
 	if (!req.body.html) return res.status(400).end({ error: "bad request" });
 
-	console.log("incoming request with body: " + req.body);
+	console.log("incoming request with body: " + req.body.html);
 	const browser = await puppeteer.launch(chromeOptions);
 	const page = await browser.newPage();
 	page.setContent(req.body.html);
