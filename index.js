@@ -18,7 +18,7 @@ app.post("/", async (req, res) => {
 	const page = await browser.newPage();
 	page.setContent(req.body.html);
 	const pdf = await page.pdf();
-	await page.close();
+	await browser.close();
 
 	res.setHeader("Content-disposition", 'attachment; filename="curriculo.pdf');
 	res.setHeader("Content-Type", "application/pdf");
