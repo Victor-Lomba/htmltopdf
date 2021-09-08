@@ -23,6 +23,7 @@ app.post("/", async (req, res) => {
 	const pdf = await page.pdf({
 		format: "a4",
 		scale: 0.75,
+		printBackground: true,
 	});
 	await browser.close();
 
